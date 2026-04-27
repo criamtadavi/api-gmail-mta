@@ -13,7 +13,7 @@ sgMail.setApiKey(process.env.SENDGRID_KEY);
 
 // 📦 rota envio
 app.post("/send", async (req, res) => {
-    const { key, to, subject, message } = req.body;
+    const { key, to, subject, message, html } = req.body;
 
     if (key !== API_KEY) {
         return res.status(403).json({ error: "Acesso negado" });
@@ -24,6 +24,7 @@ app.post("/send", async (req, res) => {
         from: "inovaroleplay@hotmail.com", // Coloque SEU email aqui!
         subject: subject,
         text: message,
+        html: html,
     };
 
     try {
